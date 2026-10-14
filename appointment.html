@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionCare — Qabulga Yozilish</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef8ff',
+                            100: '#d9f0ff',
+                            500: '#0284c7',
+                            600: '#026aa2',
+                            700: '#03537e',
+                            900: '#0b273b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #0b273b 0%, #03537e 50%, #0284c7 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- Header / Navigatsiya -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-11 h-11 rounded-xl bg-brand-500 flex items-center justify-center text-white text-xl shadow-md shadow-brand-500/30">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-brand-900">Vision<span class="text-brand-500">Care</span></span>
+                        <p class="text-xs text-gray-500 font-medium">Oftalmologiya Markazi</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigatsiya -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-brand-500 font-medium transition-colors">Bosh sahifa</a>
+                    <a href="services.html" class="text-gray-600 hover:text-brand-500 font-medium transition-colors">Xizmatlar & Narxlar</a>
+                    <a href="appointment.html" class="text-brand-500 font-semibold transition-colors">Qabulga yozilish</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="appointment.html" class="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-brand-500/25 transition-all">
+                        Navbatga yozilish
+                    </a>
+                </div>
+
+                <!-- Mobil menyu tugmasi -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-700 hover:text-brand-500 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobil menyu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-4 space-y-2">
+            <a href="index.html" class="block py-2 px-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium">Bosh sahifa</a>
+            <a href="services.html" class="block py-2 px-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium">Xizmatlar & Narxlar</a>
+            <a href="appointment.html" class="block py-2 px-3 rounded-lg text-brand-500 font-semibold bg-brand-50">Qabulga yozilish</a>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="hero-gradient text-white py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold">Shifokor Qabuliga Yozilish</h1>
+            <p class="text-gray-200 mt-3 max-w-2xl mx-auto text-base sm:text-lg">
+                Formani to'ldiring, ma'lumotlaringiz bevosita ma'muriyatimizga yuboriladi va operatorlarimiz siz bilan bog'lanishadi.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content: Form & Info -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Onlayn Form (8 Cols) -->
+                <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-gray-100 shadow-xl shadow-gray-100">
+                    <h2 class="text-2xl font-bold text-brand-900 mb-2">Onlayn Navbat Olish</h2>
+                    <p class="text-gray-500 text-sm mb-8">Barcha maydonlarni to'liq to'ldirishingiz so'raladi.</p>
+
+                    <!-- Alert Box -->
+                    <div id="status-alert" class="hidden mb-6 p-4 rounded-xl text-sm font-medium"></div>
+
+                    <form id="appointment-form" class="space-y-6">
+                        <!-- Ism Familiya -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Ism va Familiyangiz *</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                                    <i class="fa-solid fa-user"></i>
+                                </span>
+                                <input type="text" id="fullname" required placeholder="Masalan: Ali Valiyev" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-sm">
+                            </div>
+                        </div>
+
+                        <!-- Telefon raqam va Sana -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Telefon raqamingiz *</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </span>
+                                    <input type="tel" id="phone" required placeholder="+998 90 123 45 67" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-sm">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Qabul sanasi *</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                                        <i class="fa-solid fa-calendar-day"></i>
+                                    </span>
+                                    <input type="date" id="date" required class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-sm">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Xizmat turini tanlash -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Xizmat turini tanlang *</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                                    <i class="fa-solid fa-stethoscope"></i>
+                                </span>
+                                <select id="service" required class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-sm appearance-none">
+                                    <option value="" disabled selected>Xizmatni tanlang...</option>
+                                    <option value="Kompleks Diagnostika">Kompleks Diagnostika (200 000 so'm)</option>
+                                    <option value="Femto-LASIK Korreksiyasi">Femto-LASIK Korreksiyasi (6 500 000 so'm)</option>
+                                    <option value="Katarakta Davolash (Fako)">Katarakta Davolash (Fako) (4 000 000 so'm)</option>
+                                    <option value="OKT Skanerlash">OKT Skanerlash (300 000 so'm)</option>
+                                    <option value="Glaukoma Jarrohligi">Glaukoma Jarrohligi (3 500 000 so'm)</option>
+                                    <option value="To'r Parda Koagulyatsiyasi">To'r Parda Koagulyatsiyasi (1 200 000 so'm)</option>
+                                    <option value="Umumiy Shifokor Ko'rigi">Umumiy Shifokor Ko'rigi</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Qo'shimcha izoh -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Qo'shimcha izoh yoki shikoyatingiz (Ixtiyoriy)</label>
+                            <textarea id="message" rows="4" placeholder="Masalan: Ko'zda ko'p yoshlanish va og'riq bor..." class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-sm resize-none"></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submit-btn" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center space-x-2 text-base">
+                            <span id="btn-text">Navbatga yozilishni tasdiqlash</span>
+                            <i id="btn-icon" class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Kontakt va Ish Vaqti (5 Cols) -->
+                <div class="lg:col-span-5 space-y-8">
+                    <!-- Contact Info Card -->
+                    <div class="bg-brand-900 text-white p-8 rounded-3xl relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl">
+                            <i class="fa-solid fa-hospital"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6 text-brand-100">Klinika Aloqa Ma'lumotlari</h3>
+                        
+                        <div class="space-y-6 text-sm">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-brand-300 shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-xs font-medium">Manzil</p>
+                                    <p class="font-semibold text-gray-100">Toshkent shahri, Chilonzor tumani, Bunyodkor ko'chasi 15-uy</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-brand-300 shrink-0">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-xs font-medium">Telefonlar</p>
+                                    <p class="font-semibold text-gray-100">+998 (71) 123-45-67</p>
+                                    <p class="font-semibold text-gray-100">+998 (90) 987-65-43</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-brand-300 shrink-0">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-xs font-medium">Ish Rejimi</p>
+                                    <p class="font-semibold text-gray-100">Dushanba - Shanba: 08:30 — 18:00</p>
+                                    <p class="text-brand-300 text-xs mt-0.5">Yakshanba: Dam olish kuni</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Container -->
+                    <div class="bg-white p-4 rounded-3xl border border-gray-100 shadow-lg overflow-hidden">
+                        <p class="font-bold text-brand-900 mb-3 px-2 text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-map-location-dot text-brand-500"></i> Xaritadan joylashuv
+                        </p>
+                        <div class="w-full h-56 rounded-2xl overflow-hidden">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d191885.5026378278!2d69.13928237937402!3d41.28251254648796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b0cc379e95f%3A0x4a014e0b778716e1!2sTashkent%2C%20Uzbekistan!5e0!2m2!1sen!2s!4v1700000000000!5m2!1sen!2s" class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-900 text-white pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-gray-800">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white text-lg">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <span class="text-xl font-extrabold tracking-tight">Vision<span class="text-brand-400">Care</span></span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Ko'z nurini asrash va tiklash bo'yicha ishonchli hamkoringiz.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold mb-4 text-gray-200">Sahifalar</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Bosh sahifa</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Xizmatlar & Narxlar</a></li>
+                        <li><a href="appointment.html" class="hover:text-white transition-colors">Qabulga yozilish</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold mb-4 text-gray-200">Ish vaqti</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li>Dushanba - Shanba: 08:30 - 18:00</li>
+                        <li>Yakshanba: Dam olish kuni</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold mb-4 text-gray-200">Bog'lanish</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><i class="fa-solid fa-phone mr-2 text-brand-500"></i> +998 (71) 123-45-67</li>
+                        <li><i class="fa-solid fa-location-dot mr-2 text-brand-500"></i> Toshkent sh., Chilonzor tumani</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
+                <p>&copy; 2026 VisionCare. Barcha huquqlar himoyalangan.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-gray-400"><i class="fa-brands fa-telegram text-lg"></i></a>
+                    <a href="#" class="hover:text-gray-400"><i class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="#" class="hover:text-gray-400"><i class="fa-brands fa-facebook text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript & Telegram Bot API Integratsiyasi -->
+    <script>
+        // Mobil menyu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Telegram Bot Konfiguratsiyasi
+        const BOT_TOKEN = "8912356113:AAHVZWcr7K8oqVUgstq1LfzQSETIIdimSos";
+        const ADMIN_CHAT_ID = "8898937663";
+
+        const form = document.getElementById('appointment-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnIcon = document.getElementById('btn-icon');
+        const alertBox = document.getElementById('status-alert');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Tugma holatini o'zgartirish (Loading state)
+            submitBtn.disabled = true;
+            btnText.innerText = "Yuborilmoqda...";
+            btnIcon.className = "fa-solid fa-spinner fa-spin";
+            alertBox.classList.add('hidden');
+
+            // Formadan ma'lumotlarni olish
+            const fullname = document.getElementById('fullname').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const date = document.getElementById('date').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value.trim() || "Mavjud emas";
+
+            // Telegramga yuboriladigan xabar formati (HTML rejimi)
+            const text = `
+<b>🏥 YANGI NAVBATGA YOZILISH (VisionCare)</b>
+
+<b>👤 Bemor:</b> ${fullname}
+<b>📞 Telefon:</b> ${phone}
+<b>📅 Qabul Sanasi:</b> ${date}
+<b>🩺 Xizmat turi:</b> ${service}
+<b>💬 Izoh:</b> ${message}
+
+<i>⏱ Yuborilgan vaqt: ${new Date().toLocaleString('uz-UZ')}</i>
+            `;
+
+            try {
+                // Telegram API orqali xabar yuborish
+                const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: ADMIN_CHAT_ID,
+                        text: text,
+                        parse_mode: 'HTML'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.ok) {
+                    // Muvaffaqiyatli yuborildi
+                    showAlert("Arizangiz muvaffaqiyatli yuborildi! Tez orada operatorlarimiz bog'lanishadi.", "success");
+                    form.reset();
+                } else {
+                    // Telegram API xatolik qaytarsa
+                    showAlert("Xabar yuborishda xatolik yuz berdi: " + (data.description || "Noma'lum xato"), "error");
+                }
+            } catch (error) {
+                // Tarmoq xatoligi
+                showAlert("Tarmoqda xatolik yuz berdi. Internet ulanishini tekshiring va qayta urinib ko'ring.", "error");
+                console.error("Telegram API Error:", error);
+            } finally {
+                // Tugma holatini asl holiga qaytarish
+                submitBtn.disabled = false;
+                btnText.innerText = "Navbatga yozilishni tasdiqlash";
+                btnIcon.className = "fa-solid fa-paper-plane";
+            }
+        });
+
+        // Ogohlantirish xabarini chiqarish funksiyasi
+        function showAlert(msg, type) {
+            alertBox.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'border-green-300', 'bg-red-100', 'text-red-800', 'border-red-300');
+            alertBox.classList.add('border');
+
+            if (type === 'success') {
+                alertBox.classList.add('bg-green-100', 'text-green-800', 'border-green-300');
+            } else {
+                alertBox.classList.add('bg-red-100', 'text-red-800', 'border-red-300');
+            }
+
+            alertBox.innerText = msg;
+            alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>

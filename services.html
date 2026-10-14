@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionCare — Xizmatlar va Narxlar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef8ff',
+                            100: '#d9f0ff',
+                            500: '#0284c7',
+                            600: '#026aa2',
+                            700: '#03537e',
+                            900: '#0b273b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #0b273b 0%, #03537e 50%, #0284c7 100%);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px -5px rgba(2, 132, 199, 0.12);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- Header / Navigatsiya -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-11 h-11 rounded-xl bg-brand-500 flex items-center justify-center text-white text-xl shadow-md shadow-brand-500/30">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-brand-900">Vision<span class="text-brand-500">Care</span></span>
+                        <p class="text-xs text-gray-500 font-medium">Oftalmologiya Markazi</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigatsiya -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-brand-500 font-medium transition-colors">Bosh sahifa</a>
+                    <a href="services.html" class="text-brand-500 font-semibold transition-colors">Xizmatlar & Narxlar</a>
+                    <a href="appointment.html" class="text-gray-600 hover:text-brand-500 font-medium transition-colors">Qabulga yozilish</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="appointment.html" class="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-brand-500/25 transition-all">
+                        Navbatga yozilish
+                    </a>
+                </div>
+
+                <!-- Mobil menyu tugmasi -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-700 hover:text-brand-500 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobil menyu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-4 space-y-2">
+            <a href="index.html" class="block py-2 px-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium">Bosh sahifa</a>
+            <a href="services.html" class="block py-2 px-3 rounded-lg text-brand-500 font-semibold bg-brand-50">Xizmatlar & Narxlar</a>
+            <a href="appointment.html" class="block py-2 px-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium">Qabulga yozilish</a>
+            <div class="pt-2">
+                <a href="appointment.html" class="block text-center w-full bg-brand-500 text-white font-semibold py-2.5 rounded-xl shadow-md">Navbatga yozilish</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="hero-gradient text-white py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold">Xizmatlar va Narxlar</h1>
+            <p class="text-gray-200 mt-3 max-w-2xl mx-auto text-base sm:text-lg">
+                Klinikamizda ko'z kasalliklarini aniqlash va davolash bo'yicha taqdim etiladigan barcha turdagi xizmatlar hamda shaffof narxlar
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Category Tabs / Filter -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button onclick="filterServices('all')" class="tab-btn active bg-brand-500 text-white font-semibold px-5 py-2.5 rounded-xl shadow-sm transition-all text-sm">
+                    Barcha xizmatlar
+                </button>
+                <button onclick="filterServices('diag')" class="tab-btn bg-white text-gray-600 hover:bg-brand-50 font-semibold px-5 py-2.5 rounded-xl border border-gray-200 transition-all text-sm">
+                    Diagnostika
+                </button>
+                <button onclick="filterServices('laser')" class="tab-btn bg-white text-gray-600 hover:bg-brand-50 font-semibold px-5 py-2.5 rounded-xl border border-gray-200 transition-all text-sm">
+                    Lazer Korreksiyasi
+                </button>
+                <button onclick="filterServices('surg')" class="tab-btn bg-white text-gray-600 hover:bg-brand-50 font-semibold px-5 py-2.5 rounded-xl border border-gray-200 transition-all text-sm">
+                    Jarrohlik (Xirurgiya)
+                </button>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1 -->
+                <div class="service-item diag bg-white p-6 rounded-2xl border border-gray-100 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-eye-dropper"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-900 mb-2">Kompleks Diagnostika</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Ko'rish o'tkirligi, ko'z ichi bosimi (tonometriya), shox parda va ko'z tubini (oftalmoskopiya) to'liq tekshirish.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-lg font-extrabold text-brand-600">200 000 so'm</span>
+                        <a href="appointment.html" class="text-sm font-bold text-brand-500 hover:text-brand-700 flex items-center gap-1">
+                            Yozilish <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-item laser bg-white p-6 rounded-2xl border border-gray-100 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-900 mb-2">Femto-LASIK Korreksiyasi</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Yaqindan va uzoqdan ko'rolmaslik (miopiya/gipermetropiya) hamda astigmatizmni og'riqsiz lazer usulida tuzatish.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-lg font-extrabold text-brand-600">6 500 000 so'm</span>
+                        <a href="appointment.html" class="text-sm font-bold text-brand-500 hover:text-brand-700 flex items-center gap-1">
+                            Yozilish <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-item surg bg-white p-6 rounded-2xl border border-gray-100 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-stethoscope"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-900 mb-2">Katarakta Davolash (Fako)</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Xiralashgan ko'zguchani olib tashlash va uning o'rniga zamonaviy monofokal yoki multifokal linza o'rnatish.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-lg font-extrabold text-brand-600">4 000 000 so'm</span>
+                        <a href="appointment.html" class="text-sm font-bold text-brand-500 hover:text-brand-700 flex items-center gap-1">
+                            Yozilish <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-item diag bg-white p-6 rounded-2xl border border-gray-100 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-wave-square"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-900 mb-2">OKT (Optik Kogerent Tomografiya)</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Ko'z to'r pardasi va ko me'da asabini mikron darajasigacha yuqori aniqlikda skanerlash va tahlil qilish.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-lg font-extrabold text-brand-600">300 000 so'm</span>
+                        <a href="appointment.html" class="text-sm font-bold text-brand-500 hover:text-brand-700 flex items-center gap-1">
+                            Yozilish <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-item surg bg-white p-6 rounded-2xl border border-gray-100 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-hospital-user"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-900 mb-2">Glaukoma Jarrohligi</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Ko'z ichi bosimini normallashtirish va ko'rish nervini shikastlanishdan saqlashga qaratilgan jarrohlik.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-lg font-extrabold text-brand-600">3 500 000 so'm</span>
+                        <a href="appointment.html" class="text-sm font-bold text-brand-500 hover:text-brand-700 flex items-center gap-1">
+                            Yozilish <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-item laser bg-white p-6 rounded-2xl border border-gray-100 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-shield"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-900 mb-2">To'r Parda Koagulyatsiyasi</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Ko'z to'r pardasi ko'chishi va ko'chish xavfi bo'lganda uni lazer yordamida mustahkamlash muolajasi.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-lg font-extrabold text-brand-600">1 200 000 so'm</span>
+                        <a href="appointment.html" class="text-sm font-bold text-brand-500 hover:text-brand-700 flex items-center gap-1">
+                            Yozilish <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Info Box -->
+            <div class="mt-16 bg-brand-50 border border-brand-100 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-2 text-center md:text-left">
+                    <h4 class="text-xl font-bold text-brand-900">Qaysi xizmat sizga mos kelishini bilmayapsizmi?</h4>
+                    <p class="text-gray-600 text-sm">Shifokorimiz ko'rigidan o'ting, diagnostika natijasiga qarab eng to'g'ri muolaja tanlanadi.</p>
+                </div>
+                <a href="appointment.html" class="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition-all whitespace-nowrap">
+                    Konsultatsiyaga yozilish
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-900 text-white pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-gray-800">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white text-lg">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <span class="text-xl font-extrabold tracking-tight">Vision<span class="text-brand-400">Care</span></span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Ko'z nurini asrash va tiklash bo'yicha ishonchli hamkoringiz.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold mb-4 text-gray-200">Sahifalar</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Bosh sahifa</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Xizmatlar & Narxlar</a></li>
+                        <li><a href="appointment.html" class="hover:text-white transition-colors">Qabulga yozilish</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold mb-4 text-gray-200">Ish vaqti</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li>Dushanba - Shanba: 08:30 - 18:00</li>
+                        <li>Yakshanba: Dam olish kuni</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold mb-4 text-gray-200">Bog'lanish</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><i class="fa-solid fa-phone mr-2 text-brand-500"></i> +998 (71) 123-45-67</li>
+                        <li><i class="fa-solid fa-location-dot mr-2 text-brand-500"></i> Toshkent sh., Chilonzor tumani</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
+                <p>&copy; 2026 VisionCare. Barcha huquqlar himoyalangan.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-gray-400"><i class="fa-brands fa-telegram text-lg"></i></a>
+                    <a href="#" class="hover:text-gray-400"><i class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="#" class="hover:text-gray-400"><i class="fa-brands fa-facebook text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobil menyu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Category Filter
+        function filterServices(category) {
+            const items = document.querySelectorAll('.service-item');
+            const tabs = document.querySelectorAll('.tab-btn');
+
+            // Tab tugmalarini faollashtirish
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-brand-500', 'text-white');
+                tab.classList.add('bg-white', 'text-gray-600');
+            });
+
+            event.currentTarget.classList.remove('bg-white', 'text-gray-600');
+            event.currentTarget.classList.add('bg-brand-500', 'text-white');
+
+            // Elementlarni filtrlash
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

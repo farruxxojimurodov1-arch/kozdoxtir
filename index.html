@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionCare — Zamonaviy Ko'z Klinikasi | Bosh Sahifa</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef8ff',
+                            100: '#d9f0ff',
+                            500: '#0284c7',
+                            600: '#026aa2',
+                            700: '#03537e',
+                            900: '#0b273b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #0b273b 0%, #03537e 50%, #0284c7 100%);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(2, 132, 199, 0.1), 0 10px 10px -5px rgba(2, 132, 199, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- Header / Navigatsiya -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-11 h-11 rounded-xl bg-brand-500 flex items-center justify-center text-white text-xl shadow-md shadow-brand-500/30">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-brand-900">Vision<span class="text-brand-500">Care</span></span>
+                        <p class="text-xs text-gray-500 font-medium">Oftalmologiya Markazi</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigatsiya -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-brand-500 font-semibold transition-colors">Bosh sahifa</a>
+                    <a href="services.html" class="text-gray-600 hover:text-brand-500 font-medium transition-colors">Xizmatlar & Narxlar</a>
+                    <a href="appointment.html" class="text-gray-600 hover:text-brand-500 font-medium transition-colors">Qabulga yozilish</a>
+                </nav>
+
+                <!-- Aloqa / CTA tugma -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <div class="flex items-center space-x-3 text-right">
+                        <div>
+                            <p class="text-xs text-gray-400 font-medium">Ishonch telefoni</p>
+                            <a href="tel:+998711234567" class="text-sm font-bold text-brand-900 hover:text-brand-500 transition-colors">+998 (71) 123-45-67</a>
+                        </div>
+                    </div>
+                    <a href="appointment.html" class="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-brand-500/25 transition-all">
+                        Navbatga yozilish
+                    </a>
+                </div>
+
+                <!-- Mobil menyu tugmasi -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-700 hover:text-brand-500 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobil menyu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-4 space-y-2">
+            <a href="index.html" class="block py-2 px-3 rounded-lg text-brand-500 font-semibold bg-brand-50">Bosh sahifa</a>
+            <a href="services.html" class="block py-2 px-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium">Xizmatlar & Narxlar</a>
+            <a href="appointment.html" class="block py-2 px-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium">Qabulga yozilish</a>
+            <div class="pt-2">
+                <a href="appointment.html" class="block text-center w-full bg-brand-500 text-white font-semibold py-2.5 rounded-xl shadow-md">Navbatga yozilish</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Bo'limi -->
+    <section class="hero-gradient text-white py-20 lg:py-28 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-brand-100 text-sm font-medium border border-white/15">
+                        <i class="fa-solid fa-shield-heart text-brand-300"></i>
+                        <span>100% Xavfsiz va Zamonaviy Davolash</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Ko'zingizga mukammal nurlarni <span class="text-cyan-300">qaytaramiz</span>
+                    </h1>
+                    <p class="text-gray-200 text-lg leading-relaxed max-w-xl">
+                        Eng ilg'or Germaniya va Shveytsariya tibbiy jihozlari, malakali oftalmologlar va yuqori aniqlikdagi lazer jarrohligi yordamida ko'rish qobiliyatingizni tiklang.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
+                        <a href="appointment.html" class="bg-white text-brand-900 hover:bg-brand-50 font-bold px-8 py-4 rounded-xl shadow-xl transition-all text-center flex items-center justify-center space-x-2">
+                            <span>Qabulga yozilish</span>
+                            <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </a>
+                        <a href="services.html" class="bg-transparent hover:bg-white/10 text-white border border-white/30 font-semibold px-8 py-4 rounded-xl transition-all text-center">
+                            Xizmatlarni ko'rish
+                        </a>
+                    </div>
+                    <!-- Statistika -->
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/15">
+                        <div>
+                            <p class="text-3xl font-extrabold text-cyan-300">15+</p>
+                            <p class="text-xs text-gray-300 mt-1">Yillik tajriba</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-extrabold text-cyan-300">25k+</p>
+                            <p class="text-xs text-gray-300 mt-1">Muvaffaqiyatli amaliyot</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-extrabold text-cyan-300">99%</p>
+                            <p class="text-xs text-gray-300 mt-1">Mamnun bemorlar</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative flex justify-center">
+                    <div class="relative w-full max-w-md lg:max-w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80" alt="Oftalmologiya klinikasi" class="w-full h-[420px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/80 via-transparent to-transparent flex items-end p-6">
+                            <div class="text-white">
+                                <p class="text-sm font-semibold text-cyan-300">Professional yondashuv</p>
+                                <p class="text-lg font-bold">Yuqori malakali mutaxassislar nazorati ostida</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nima uchun bizni tanlashadi? -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-brand-500 font-bold text-sm tracking-wider uppercase bg-brand-50 px-3 py-1 rounded-full">Afzalliklarimiz</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-900 mt-3">Nima uchun VisionCare'ni tanlashadi?</h2>
+                <p class="text-gray-600 mt-3">Sizning sog'ligingiz va ko'rish qobiliyatingiz biz uchun eng oliy qadriyat hisoblanadi.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 card-hover">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-500 flex items-center justify-center text-2xl mb-6 shadow-inner">
+                        <i class="fa-solid fa-microscope"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-900 mb-3">Eng yangi texnologiyalar</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Tashxis va jarrohlik amaliyotlari uchun so'nggi avlod Germaniya va Yaponiya jihozlaridan foydalanamiz.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 card-hover">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-500 flex items-center justify-center text-2xl mb-6 shadow-inner">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-900 mb-3">Tajribali shifokorlar</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        15 yildan ortiq tajribaga ega, xalqaro darajadagi malakali oftalmolog-jarrohlar jamoasi.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 card-hover">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-500 flex items-center justify-center text-2xl mb-6 shadow-inner">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-900 mb-3">Tezkor natija va qulaylik</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Navbat kutmasdan onlayn yozilish, tezkor diagnostika va qulay sharoitlar yaratilgan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-900 text-white pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-gray-800">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white text-lg">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <span class="text-xl font-extrabold tracking-tight">Vision<span class="text-brand-400">Care</span></span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Ko'z nurini asrash va tiklash bo'yicha ishonchli hamkoringiz.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold mb-4 text-gray-200">Sahifalar</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Bosh sahifa</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Xizmatlar & Narxlar</a></li>
+                        <li><a href="appointment.html" class="hover:text-white transition-colors">Qabulga yozilish</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold mb-4 text-gray-200">Ish vaqti</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li>Dushanba - Shanba: 08:30 - 18:00</li>
+                        <li>Yakshanba: Dam olish kuni</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold mb-4 text-gray-200">Bog'lanish</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><i class="fa-solid fa-phone mr-2 text-brand-500"></i> +998 (71) 123-45-67</li>
+                        <li><i class="fa-solid fa-location-dot mr-2 text-brand-500"></i> Toshkent sh., Chilonzor tumani</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
+                <p>&copy; 2026 VisionCare. Barcha huquqlar himoyalangan.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-gray-400"><i class="fa-brands fa-telegram text-lg"></i></a>
+                    <a href="#" class="hover:text-gray-400"><i class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="#" class="hover:text-gray-400"><i class="fa-brands fa-facebook text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobil menyu ochib-yopish
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
+</body>
+</html>
